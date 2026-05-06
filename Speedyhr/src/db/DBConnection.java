@@ -1,42 +1,39 @@
-	package db;
+package db;
 
-	import java.sql.Connection;
-	import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
-	public class DBConnection {
+public class DBConnection {
 
-	    private static final String URL =
-	            "jdbc:mysql://3.69.96.96:80/db3";
+    private static final String URL =
+            "jdbc:mysql://3.69.96.96:80/db3";
 
-	    private static final String USER =
-	            "db3";
+    private static final String USER =
+            "db3";
 
-	    private static final String PASSWORD =
-	            "!db3.winf26?SS3";
+    private static final String PASSWORD =
+            "!db3.winf26?SS3";
 
-	    public static Connection getConnection() {
+    public static Connection getConnection() {
 
-	        try {
+        try {
 
-	            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn =
+                    DriverManager.getConnection(
+                            URL,
+                            USER,
+                            PASSWORD
+                    );
 
-	            Connection conn =
-	                    DriverManager.getConnection(
-	                            URL,
-	                            USER,
-	                            PASSWORD
-	                    );
+            System.out.println("Verbindung erfolgreich!");
 
-	            System.out.println("Verbindung erfolgreich!");
+            return conn;
 
-	            return conn;
+        } catch (Exception e) {
 
-	        } catch (Exception e) {
+            e.printStackTrace();
 
-	            e.printStackTrace();
-
-	            return null;
-	        }
-	    }
-	}
-
+            return null;
+        }
+    }
+}
